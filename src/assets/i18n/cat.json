@@ -1,0 +1,13 @@
+{
+  "HELLO_WORLD" : "Hola món!",
+  "LOGIN": "Entrar",
+  "USERNAME": "Usuari",
+  "PASSWORD": "Contrassenya",
+  "EMAIL": "Correu electrònic",
+  "RETURN": "Enrere",
+  "BUTTON_GET_PSW_MESSAGE": "Obtenir/Recuperar la contrassenya",
+  "BUTTON_LOGIN_MESSAGE": "Entra amb les teves credencials",
+  "TEXT_RECOVER_PSW": "Introduiu el vostre compte de correu electrònic FEDAC per obtenir una contrassenya nova:",
+  "Camp necessari": "Camp necessari",
+  "Camp no vàlid": "Camp no vàlid"
+}

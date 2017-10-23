@@ -1,0 +1,85 @@
+<div class="container-login" >
+    <mat-card color="primary" class="login" class.xs="login-xs">
+
+        <!-- HEADING OF FORM -->
+        <img src="/assets/images/logo.png" class="logo-form">
+
+        <!-- LOGIN FORM -->
+        <form [@flyInOut]="!recoverForm" *ngIf="!recoverForm" (ngSubmit)="login()">
+            <p>
+                <mat-input-container class="login-input-container">
+                    <input  matInput
+                            placeholder="{{'USERNAME' | translate}}*"
+                            type="text"
+                            [formControl]="usernameFormControl"
+                            [(ngModel)]="user.username" name="username">
+                    <mat-error *ngIf="usernameFormControl.hasError('required')">
+                        {{'Camp necessari' | translate}}
+                    </mat-error>
+                </mat-input-container>
+            </p>
+
+            <p>
+                <mat-input-container class="login-input-container">
+                    <input  matInput
+                            placeholder="{{'PASSWORD' | translate}}*"
+                            type="password"
+                            [formControl]="passwordFormControl"
+                            [(ngModel)]="user.password" name="password">
+                    <mat-error *ngIf="passwordFormControl.hasError('required')">
+                        {{'Camp necessari' | translate}}
+                    </mat-error>
+                </mat-input-container>
+            </p>
+
+            <div class="button-row">
+                <button class ="login-button button-password"
+                        (click)="recoverForm=true"
+                        type="button"
+                        mat-button>
+                    <i class="material-icons">lock_outline</i>
+                </button>
+                <button class ="login-button button-send-login"
+                        mat-button
+                        type="submit">
+                    {{'LOGIN' | translate}}
+                </button>
+            </div>
+        </form>
+
+        <!-- RESET PASSWORD FORM -->
+        <form *ngIf="recoverForm" [@flyInOut]="recoverForm">
+            <p class="recover-text">
+                {{'TEXT_RECOVER_PSW' | translate}}
+            </p>
+
+            <p style="margin:0;">
+                <mat-input-container class="login-input-container email-container">
+                    <input matInput placeholder="{{'EMAIL' | translate}}" [formControl]="emailFormControl" type="email">
+                    <mat-error *ngIf="emailFormControl.hasError('pattern')">
+                        {{'Camp no vàlid' | translate}}
+                    </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                        {{'Camp necessari' | translate}}
+                    </mat-error>
+                </mat-input-container>
+
+                <button class ="login-button button-password button-password-right"
+                        mat-button>
+                    <i class="material-icons">chevron_right</i>
+                </button>
+
+            </p>
+
+            <p style="text-align: right; margin:0;">
+                <button class ="login-button button-return"
+                        mat-button
+                        (click)="recoverForm=false">
+                        <i class="material-icons">chevron_left</i>{{'RETURN' | translate}}
+                </button>
+            </p>
+        </form>
+    </mat-card>
+</div>
+
+<mat-progress-bar mode="indeterminate" color="accent" *ngIf="loading"></mat-progress-bar>

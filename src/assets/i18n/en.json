@@ -1,0 +1,12 @@
+{
+  "LOGIN": "Login",
+  "USERNAME": "Username",
+  "PASSWORD": "Password",
+  "EMAIL": "Email",
+  "RETURN": "Return",
+  "BUTTON_GET_PSW_MESSAGE": "Get your password",
+  "BUTTON_LOGIN_MESSAGE": "Login with your credentials",
+  "TEXT_RECOVER_PSW": "Edu360' passwords are linked to a FEDAC Google Account. Provide your email to get a new password.",
+  "Camp necessari": "Required",
+  "Camp no vàlid": "Invalid format"
+}

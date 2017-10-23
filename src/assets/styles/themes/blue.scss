@@ -1,0 +1,183 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$black-87-opacity: rgba(0,0,0, .87);
+
+// You can define colors here (using http://mcg.mbitson.com)
+$md-primary: (
+    50 : #eaf9fd,
+    100 : #cbf1fb,
+    200 : #a9e7f8,
+    300 : #86ddf5,
+    400 : #6cd6f3,
+    500 : #52cff1,
+    600 : #4bcaef,
+    700 : #41c3ed,
+    800 : #38bdeb,
+    900 : #28b2e7,
+    A100 : #ffffff,
+    A200 : #f1fbff,
+    A400 : #beecff,
+    A700 : #a4e4ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$md-accent: (
+    50 : #fdf8e6,
+    100 : #fbedc2,
+    200 : #f8e199,
+    300 : #f5d470,
+    400 : #f3cb51,
+    500 : #f1c232,
+    600 : #efbc2d,
+    700 : #edb426,
+    800 : #ebac1f,
+    900 : #e79f13,
+    A100 : #ffffff,
+    A200 : #fff4e2,
+    A400 : #ffe2af,
+    A700 : #ffd896,
+    contrast: (
+        50 : #fff,
+        100 : #fff,
+        200 : #fff,
+        300 : #fff,
+        400 : #fff,
+        500 : #fff,
+        600 : #fff,
+        700 : #fff,
+        800 : #fff,
+        900 : #fff,
+        A100 : #fff,
+        A200 : #fff,
+        A400 : #fff,
+        A700 : #fff,
+    )
+);
+
+// mandatory stuff for theming
+$fedac-primary: mat-palette($md-primary);
+$fedac-accent:  mat-palette($md-accent);
+
+// include the custom theme components into a theme object
+$fedac-theme: mat-light-theme($fedac-primary, $fedac-accent);
+
+$primary-dark: darken( map-get($md-primary, 500), 8% );
+
+// include the custom theme object into the angular material theme
+.fedac-blue {
+    @include angular-material-theme($fedac-theme);
+
+    .topbar{
+        background:white;
+    }
+
+    .mat-sidenav{
+        background: map-get($md-primary, 500) !important;
+        color: #ffffff !important;
+    }
+
+    .mat-bg-primary,
+    .sidebar-panel.mat-sidenav .sidebar-list-item.open md-icon:not(.menu-caret),
+    .chats-wrap .conversations-hold .single-conversation.me .conversation-msg,
+    .ngx-datatable .datatable-footer .datatable-pager .pager .pages.active a,
+    .fileupload-drop-zone.dz-file-over,
+    .toolbar-avatar.online > .status-dot,
+    .cal-open-day-events,
+    div.hopscotch-bubble {
+        background: map-get($md-primary, 500) !important;
+        color: #ffffff !important;
+    }
+    .mat-color-primary,
+    .sidebar-panel.mat-sidenav .sidebar-list-item.open > .mat-list-item-content > a > span,
+    .sidebar-panel.mat-sidenav .sidebar-list-item.open .sub-menu .mat-list-item.selected a {
+        color: map-get($md-primary, 500) !important;
+    }
+    .sidebar-panel.mat-sidenav .sidebar-list-item.open > .mat-list-item-content > .sub-menu {
+        border-left: 2px solid map-get($md-primary, 500);
+    }
+    .sidebar-panel.mat-sidenav {
+        // background: url('../../images/sidebar-bg.jpg') no-repeat;
+    }
+
+    /* Hopscotch Tour */
+    div.hopscotch-bubble {
+        border-color: $primary-dark;
+    }
+    /* up arrow  */
+    div.hopscotch-bubble .hopscotch-bubble-arrow-container.up .hopscotch-bubble-arrow-border {
+        border-bottom: 17px solid $primary-dark;
+    }
+    div.hopscotch-bubble .hopscotch-bubble-arrow-container.up .hopscotch-bubble-arrow {
+        border-bottom: 17px solid map-get($md-primary, 500);
+        top: -16px;
+    }
+    /* right arrow */
+    div.hopscotch-bubble .hopscotch-bubble-arrow-container.right .hopscotch-bubble-arrow-border {
+        border-left: 17px solid $primary-dark;
+    }
+    div.hopscotch-bubble .hopscotch-bubble-arrow-container.right .hopscotch-bubble-arrow {
+        border-left: 17px solid map-get($md-primary, 500);
+        left: -1px;
+    }
+    /* bottom arrow */
+    div.hopscotch-bubble .hopscotch-bubble-arrow-container.down .hopscotch-bubble-arrow-border {
+        border-top: 17px solid $primary-dark;
+    }
+    div.hopscotch-bubble .hopscotch-bubble-arrow-container.down .hopscotch-bubble-arrow {
+        border-top: 17px solid map-get($md-primary, 500);
+        top: -18px;
+    }
+    /* Left Arrow */
+    div.hopscotch-bubble .hopscotch-bubble-arrow-container.left .hopscotch-bubble-arrow-border {
+        border-right: 17px solid $primary-dark;
+    }
+    div.hopscotch-bubble .hopscotch-bubble-arrow-container.left .hopscotch-bubble-arrow {
+        left: 1px;
+        border-right: 17px solid map-get($md-primary, 500);
+    }
+
+    .mat-bg-accent,
+    div.hopscotch-bubble .hopscotch-bubble-number,
+    div.hopscotch-bubble .hopscotch-nav-button.next:hover,
+    div.hopscotch-bubble .hopscotch-nav-button.next {
+        background-color: map-get($md-accent, 500);
+        color: black;
+    }
+    .mat-bg-warn {
+        background-color: #f44336;
+        color: white;
+    }
+
+    .mat-color-accent {
+        color: map-get($md-accent, 500);
+    }
+
+    .mat-color-warn {
+        color: #f44336;
+    }
+
+    .mat-button{
+        background-color: map-get($md-accent, 900);
+        color: #fff;
+    }
+
+    .mat-input{
+        color: rgba(0,0,0,.87);
+    }
+}
