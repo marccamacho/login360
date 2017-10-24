@@ -1,12 +1,11 @@
-import { Component, OnInit, OnDestroy }                     from '@angular/core';
+import { Component, OnInit }                                from '@angular/core';
 import { trigger, animate, state, style, transition }       from '@angular/animations';
 import { FormControl, Validators }                          from '@angular/forms';
-import { Subscription }                                     from 'rxjs/Rx';
-import { Router, Routes, ActivatedRoute, ParamMap }         from '@angular/router';
+import { ActivatedRoute }                                   from '@angular/router';
 import { environment }                                      from '../../../environments/environment';
 import { Http, Headers, RequestOptions }                    from '@angular/http';
-import { HttpClient, HttpErrorResponse }                    from '@angular/common/http';
 import { MatSnackBar }                                      from '@angular/material';
+import { TranslateService }                                 from 'ng2-translate';
 
 // For email format verification
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -26,7 +25,7 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
     ]
 })
 
-export class LoginComponent implements OnInit, OnDestroy{
+export class LoginComponent implements OnInit{
     // Control vars
     private loading             = false;
     private user                = {username:"", password:"", email:""}
@@ -42,7 +41,16 @@ export class LoginComponent implements OnInit, OnDestroy{
     private continueURL : string;
 
     // ActivatedRoute is used to get Query Params to get the URL to redirect on finish login.
-    constructor(private route: ActivatedRoute, private router: Router, private http: Http, public snackBar: MatSnackBar) { }
+    constructor(private translate: TranslateService,
+                private route: ActivatedRoute,
+                private http: Http,
+                public snackBar: MatSnackBar) {
+        // this language will be used as a fallback when a translation isn't found in the current language
+        translate.setDefaultLang('cat');
+
+        // the lang to use, if the lang isn't available, it will use the current loader to get them
+        translate.use('cat');
+    }
 
     // On Init, get URL to redirect
     ngOnInit() {
@@ -59,6 +67,8 @@ export class LoginComponent implements OnInit, OnDestroy{
 
         let options = new RequestOptions({ headers: headers });
 
+        this.loading = true;
+
         this.http.get(environment.ApiIP+"/users/token", options).subscribe(
             data => {
                 console.log(data)
@@ -68,15 +78,14 @@ export class LoginComponent implements OnInit, OnDestroy{
                 } else {                                    // Else, redirect to provided URL
                     window.location.href = this.continueURL;
                 }
+                this.loading = false;
             },
-            (err: HttpErrorResponse) => {
+            (err) => {
                 this.snackBar.open('Error d\'autentificació', 'Close', {
                     duration: 2000
                 });
+                this.loading = false;
             }
         );
-    }
-
-    ngOnDestroy() {
     }
 }

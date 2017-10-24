@@ -9,6 +9,11 @@ import { LoginComponent }                                           from './logi
 import { TranslateModule, TranslateLoader, TranslateStaticLoader }  from 'ng2-translate/ng2-translate';
 import { FormsModule, ReactiveFormsModule }                         from '@angular/forms';
 import { HttpClientModule }                                         from '@angular/common/http';
+import { Http }                                                     from '@angular/http';
+
+export function createTranslateLoader(http: Http) {
+    return new TranslateStaticLoader(http, './assets/i18n', '.json');
+}
 
 @NgModule({
     imports: [
@@ -16,7 +21,11 @@ import { HttpClientModule }                                         from '@angul
         FlexLayoutModule,
         MatCardModule, MatInputModule, MatProgressBarModule, MatButtonModule,
         MatTooltipModule, MatIconModule, MatSnackBarModule,
-        TranslateModule,
+        TranslateModule.forRoot({
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [Http]
+        }),
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
